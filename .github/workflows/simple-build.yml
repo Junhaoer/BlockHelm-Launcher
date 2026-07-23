@@ -1,0 +1,45 @@
+name: Simple Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and create release
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Resolve version
+        id: version
+        shell: pwsh
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          if ($tag -notmatch '^v\d+\.\d+\.\d+$') {
+            throw "Tag must match vX.Y.Z format. Got: $tag"
+          }
+          $versionName = $tag.Substring(1)
+          echo "VERSION_NAME=$versionName" >> $env:GITHUB_OUTPUT
+          echo "Release version: $versionName"
+
+      - name: Publish
+        run: dotnet publish Launcher.App/Launcher.App.csproj -c Release -r win-x64 --self-contained false -o publish
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "BlockHelm Launcher ${{ steps.version.outputs.VERSION_NAME }}"
+          files: publish/BlockHelm_Launcher_x64.exe
+          generate_release_notes: true
