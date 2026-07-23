@@ -3562,4 +3562,10 @@
   <data name="Settings_FontFamilySegoeUI" xml:space="preserve"><value>Segoe UI</value></data>
   <data name="Settings_FontFamilyConsolas" xml:space="preserve"><value>Consolas</value></data>
   <data name="Settings_FontFamilyCascadiaCode" xml:space="preserve"><value>Cascadia Code</value></data>
+  <data name="Settings_FontCustomModeLabel" xml:space="preserve"><value>カスタムフォント</value></data>
+  <data name="Settings_FontPresetLabel" xml:space="preserve"><value>プリセットフォント</value></data>
+  <data name="Settings_FontCustomInputLabel" xml:space="preserve"><value>カスタムフォント</value></data>
+  <data name="Settings_FontCustomInputDescription" xml:space="preserve"><value>インストール済みシステムフォントを入力または選択</value></data>
+  <data name="Settings_FontApplyButton" xml:space="preserve"><value>適用</value></data>
+  <data name="Settings_FontPreviewLabel" xml:space="preserve"><value>フォントプレビュー</value></data>
 </root>
