@@ -22,24 +22,12 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Resolve version
-        id: version
-        shell: pwsh
-        run: |
-          $tag = $env:GITHUB_REF_NAME
-          if ($tag -notmatch '^v\d+\.\d+\.\d+$') {
-            throw "Tag must match vX.Y.Z format. Got: $tag"
-          }
-          $versionName = $tag.Substring(1)
-          echo "VERSION_NAME=$versionName" >> $env:GITHUB_OUTPUT
-          echo "Release version: $versionName"
-
       - name: Publish
-        run: dotnet publish Launcher.App/Launcher.App.csproj -c Release -r win-x64 --self-contained false -o publish
+        run: dotnet publish Launcher.App/Launcher.App.csproj -c Release -p:PublishProfile=WinX64FrameworkDependentSingleFile
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "BlockHelm Launcher ${{ steps.version.outputs.VERSION_NAME }}"
-          files: publish/BlockHelm_Launcher_x64.exe
+          name: "BlockHelm Launcher"
+          files: publish/BlockHelm-Launcher-win-x64-fdd-single/BlockHelm_Launcher_x64.exe
           generate_release_notes: true
