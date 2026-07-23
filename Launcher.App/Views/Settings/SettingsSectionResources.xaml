@@ -217,4 +217,14 @@
                        TextTrimming="CharacterEllipsis" />
         </StackPanel>
     </DataTemplate>
+
+    <DataTemplate x:Key="FontFamilyOptionTemplate"
+                  DataType="{x:Type settings:SettingsFontFamilyOption}">
+        <TextBlock Text="{Binding Title}"
+                   Foreground="{DynamicResource Brush.F4F4F4}"
+                   FontFamily="{Binding Id}"
+                   FontSize="13"
+                   VerticalAlignment="Center" />
+    </DataTemplate>
+
 </ResourceDictionary>
