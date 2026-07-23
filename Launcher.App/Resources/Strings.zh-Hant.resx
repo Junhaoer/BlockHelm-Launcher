@@ -3546,4 +3546,20 @@
   <data name="Settings_UserAgreementDescription" xml:space="preserve"><value>檢視使用本軟體時適用的條款與重要聲明</value></data>
   <data name="Settings_ViewLegalDocumentButton" xml:space="preserve"><value>檢視</value></data>
   <data name="Status_OpenLegalDocumentFailed" xml:space="preserve"><value>無法開啟法律文件，請檢查系統瀏覽器設定後再試一次。</value></data>
+  <data name="Settings_FontFamilySection" xml:space="preserve"><value>字體設定</value></data>
+  <data name="Settings_FontFamilySelectionLabel" xml:space="preserve"><value>啟動器字體</value></data>
+  <data name="Settings_FontPreviewText" xml:space="preserve"><value>AaBbCcDdEeFfGg 你好世界 1234567890</value></data>
+  <data name="Settings_FontFamilyMicrosoftYaHei" xml:space="preserve"><value>微軟正黑體</value></data>
+  <data name="Settings_FontFamilySimHei" xml:space="preserve"><value>黑體</value></data>
+  <data name="Settings_FontFamilySimSun" xml:space="preserve"><value>宋體</value></data>
+  <data name="Settings_FontFamilyKaiTi" xml:space="preserve"><value>楷體</value></data>
+  <data name="Settings_FontFamilyFangSong" xml:space="preserve"><value>仿宋</value></data>
+  <data name="Settings_FontFamilyDengXian" xml:space="preserve"><value>等線</value></data>
+  <data name="Settings_FontFamilyMicrosoftJhengHei" xml:space="preserve"><value>微軟正黑體</value></data>
+  <data name="Settings_FontFamilyNotoSansCJKSC" xml:space="preserve"><value>Noto Sans CJK SC</value></data>
+  <data name="Settings_FontFamilyNotoSans" xml:space="preserve"><value>Noto Sans</value></data>
+  <data name="Settings_FontFamilyArial" xml:space="preserve"><value>Arial</value></data>
+  <data name="Settings_FontFamilySegoeUI" xml:space="preserve"><value>Segoe UI</value></data>
+  <data name="Settings_FontFamilyConsolas" xml:space="preserve"><value>Consolas</value></data>
+  <data name="Settings_FontFamilyCascadiaCode" xml:space="preserve"><value>Cascadia Code</value></data>
 </root>
