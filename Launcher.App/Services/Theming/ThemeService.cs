@@ -6,9 +6,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, version 3.
  *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
+using System.Windows;
+using System.Windows.Media;
 using Launcher.Domain.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -22,6 +29,8 @@ namespace Launcher.App.Services;
 /// </summary>
 public sealed class ThemeService : IThemeService, IDisposable
 {
+    private const string FontFamilyResourceKey = "LauncherFontFamily";
+
     private readonly IUiDispatcher uiDispatcher;
     private readonly ILogger<ThemeService> logger;
     private readonly ThemeResourceLayerManager resourceLayerManager;
@@ -29,6 +38,7 @@ public sealed class ThemeService : IThemeService, IDisposable
     private string preferredTheme = LauncherDefaults.DefaultTheme;
     private string preferredAccentColor = LauncherDefaults.DefaultAccentColor;
     private string backgroundEffect = LauncherDefaults.DefaultLauncherBackgroundEffect;
+    private string preferredFontFamily = LauncherDefaults.DefaultLauncherFontFamily;
     private bool followSystem = true;
     private int backgroundOpacityPercent = LauncherDefaults.DefaultLauncherBackgroundOpacityPercent;
     private bool enableImageControlBlur = LauncherDefaults.DefaultEnableImageBackgroundControlBlur;
@@ -135,6 +145,14 @@ public sealed class ThemeService : IThemeService, IDisposable
         }
     }
 
+    public void ApplyFont(string? fontFamily)
+    {
+        var normalizedFont = NormalizeFontFamily(fontFamily);
+        preferredFontFamily = normalizedFont;
+        uiDispatcher.Invoke(ApplyFontCore);
+        logger.LogDebug("Launcher font family applied. FontFamily={FontFamily}", normalizedFont);
+    }
+
     public void Dispose()
     {
         if (isDisposed)
@@ -145,9 +163,32 @@ public sealed class ThemeService : IThemeService, IDisposable
         isDisposed = true;
     }
 
+    internal void ApplyFontFromSettings(string? fontFamily)
+    {
+        preferredFontFamily = NormalizeFontFamily(fontFamily);
+        uiDispatcher.Invoke(ApplyFontCore);
+    }
+
+    private void ApplyFontCore()
+    {
+        var application = Application.Current;
+        if (application is null)
+            return;
+
+        try
+        {
+            application.Resources[FontFamilyResourceKey] = new FontFamily(preferredFontFamily);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Failed to apply font family {FontFamily}, falling back to default.", preferredFontFamily);
+            application.Resources[FontFamilyResourceKey] = new FontFamily(LauncherDefaults.DefaultLauncherFontFamily);
+        }
+    }
+
     private void ApplyAppearanceResourcesCore()
     {
-        var application = global::System.Windows.Application.Current;
+        var application = Application.Current;
         if (application is null)
             return;
 
@@ -175,7 +216,7 @@ public sealed class ThemeService : IThemeService, IDisposable
 
     private void ApplyPageBackgroundOpacityCore()
     {
-        var application = global::System.Windows.Application.Current;
+        var application = Application.Current;
         if (application is null)
             return;
 
@@ -221,6 +262,14 @@ public sealed class ThemeService : IThemeService, IDisposable
         return string.Equals(theme, "Light", StringComparison.OrdinalIgnoreCase)
             ? "Light"
             : LauncherDefaults.DefaultTheme;
+    }
+
+    private static string NormalizeFontFamily(string? fontFamily)
+    {
+        if (string.IsNullOrWhiteSpace(fontFamily))
+            return LauncherDefaults.DefaultLauncherFontFamily;
+
+        return fontFamily;
     }
 
     private static int NormalizeBackgroundOpacity(int opacityPercent) => Math.Clamp(opacityPercent, 0, 100);
