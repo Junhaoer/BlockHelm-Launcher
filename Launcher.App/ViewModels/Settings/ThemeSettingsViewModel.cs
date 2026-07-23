@@ -23,6 +23,7 @@ using CommunityToolkit.Mvvm.Input;
 using Launcher.App.Resources;
 using Launcher.App.Services;
 using Launcher.App.ViewModels.Shell;
+using System.Windows.Media;
 using Launcher.Domain.Models;
 
 namespace Launcher.App.ViewModels.Settings;
@@ -93,6 +94,10 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
     [ObservableProperty] private SettingsAccentColorOption? selectedAccentColorOption;
     [ObservableProperty] private SettingsBackgroundEffectOption? selectedBackgroundEffectOption;
     [ObservableProperty] private SettingsFontFamilyOption? selectedFontFamilyOption;
+    [ObservableProperty] private string customFontFamilyInput = string.Empty;
+    [ObservableProperty] private bool isCustomFontMode;
+
+    public ObservableCollection<string> SystemFontFamilies { get; } = LoadSystemFontFamilies();
     [ObservableProperty] private bool followSystemTheme = true;
     [ObservableProperty] private int launcherBackgroundOpacityPercent = LauncherDefaults.DefaultLauncherBackgroundOpacityPercent;
     [ObservableProperty] private bool enableImageBackgroundControlBlur = LauncherDefaults.DefaultEnableImageBackgroundControlBlur;
@@ -238,6 +243,45 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
         {
             settings.LauncherBackgroundEffect = newValue.Id;
         });
+    }
+
+    partial void OnIsCustomFontModeChanged(bool value)
+    {
+        if (value && !string.IsNullOrEmpty(SelectedFontFamilyOption?.Id))
+        {
+            CustomFontFamilyInput = SelectedFontFamilyOption.Id;
+        }
+    }
+
+    partial void OnCustomFontFamilyInputChanged(string value)
+    {
+        if (IsCustomFontMode && !string.IsNullOrWhiteSpace(value))
+        {
+            if (!CanPersist)
+                return;
+            themeService.ApplyFont(value);
+            Persist(settings => settings.LauncherFontFamily = value);
+        }
+    }
+
+    [RelayCommand]
+    private void ApplyCustomFont()
+    {
+        if (!string.IsNullOrWhiteSpace(CustomFontFamilyInput))
+        {
+            themeService.ApplyFont(CustomFontFamilyInput);
+            Persist(settings => settings.LauncherFontFamily = CustomFontFamilyInput);
+        }
+    }
+
+    private static ObservableCollection<string> LoadSystemFontFamilies()
+    {
+        var fonts = new ObservableCollection<string>();
+        foreach (var family in System.Windows.Media.Fonts.SystemFontFamilies)
+        {
+            fonts.Add(family.Source);
+        }
+        return fonts;
     }
 
     private void ApplyPreferenceAndPersist()
