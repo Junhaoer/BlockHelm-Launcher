@@ -184,6 +184,7 @@ public partial class App : System.Windows.Application
             themeService.ApplyBackgroundEffect(
                 mainViewModel.Settings.LauncherBackgroundEffect,
                 mainViewModel.Settings.EnableImageBackgroundControlBlur);
+            themeService.ApplyFont(mainViewModel.Settings.LauncherFontFamily);
             var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
             Log.Information(
