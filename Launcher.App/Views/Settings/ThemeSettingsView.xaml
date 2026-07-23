@@ -106,23 +106,6 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="{x:Static res:Strings.Settings_FontFamilySelectionLabel}"
-                                   Style="{StaticResource SettingsOptionTextStyle}" />
-                        <CheckBox Grid.Column="1"
-                                  Margin="16,0,0,0"
-                                  IsChecked="{Binding IsCustomFontMode, Mode=TwoWay}"
-                                  Content="{x:Static res:Strings.Settings_FontCustomModeLabel}"
-                                  Style="{StaticResource LauncherSwitchToggleButtonStyle}" />
-                    </Grid>
-
-                    <Grid Margin="0,18,0,0"
-                          IsEnabled="{Binding IsCustomFontMode, Converter={StaticResource InverseBoolConverter}}"
-                          Opacity="{Binding IsCustomFontMode, Converter={StaticResource InverseBoolOpacityConverter}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="220" />
                         </Grid.ColumnDefinitions>
 
@@ -137,9 +120,7 @@
                                                    Style="{StaticResource LauncherComboBoxStyle}" />
                     </Grid>
 
-                    <Grid Margin="0,18,0,0"
-                          IsEnabled="{Binding IsCustomFontMode}"
-                          Opacity="{Binding IsCustomFontMode, Converter={StaticResource BoolOpacityConverter}}">
+                    <Grid Margin="0,18,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
