@@ -99,6 +99,42 @@
         </GroupBox>
 
         <GroupBox Margin="0,18,0,0"
+                  Header="{x:Static res:Strings.Settings_FontFamilySection}"
+                  Style="{StaticResource LauncherContentSectionStyle}">
+            <Border Style="{StaticResource SectionFieldSurfaceStyle}">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="220" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static res:Strings.Settings_FontFamilySelectionLabel}"
+                                   Style="{StaticResource SettingsOptionTextStyle}" />
+
+                        <controls:AnimatedComboBox Grid.Column="1"
+                                                   ItemsSource="{Binding FontFamilyOptions}"
+                                                   SelectedItem="{Binding SelectedFontFamilyOption, Mode=TwoWay}"
+                                                   ItemTemplate="{StaticResource FontFamilyOptionTemplate}"
+                                                   SelectionItemTemplate="{StaticResource FontFamilyOptionTemplate}"
+                                                   Style="{StaticResource LauncherComboBoxStyle}" />
+                    </Grid>
+
+                    <Border Margin="0,18,0,0"
+                            Padding="16"
+                            Background="{DynamicResource Brush.A0FFFFFF}"
+                            CornerRadius="8">
+                        <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewText}"
+                                   FontFamily="{Binding SelectedFontFamilyOption.Id}"
+                                   FontSize="18"
+                                   Foreground="{DynamicResource Brush.F2F2F2}"
+                                   TextWrapping="Wrap" />
+                    </Border>
+                </StackPanel>
+            </Border>
+        </GroupBox>
+
+        <GroupBox Margin="0,18,0,0"
                   Header="{x:Static res:Strings.Settings_BackgroundSection}"
                   Style="{StaticResource LauncherContentSectionStyle}">
             <Border Style="{StaticResource SectionFieldSurfaceStyle}">
