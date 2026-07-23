@@ -171,7 +171,7 @@ public sealed class ThemeService : IThemeService, IDisposable
 
     private void ApplyFontCore()
     {
-        var application = Application.Current;
+        var application = global::System.Windows.Application.Current;
         if (application is null)
             return;
 
@@ -188,7 +188,7 @@ public sealed class ThemeService : IThemeService, IDisposable
 
     private void ApplyAppearanceResourcesCore()
     {
-        var application = Application.Current;
+        var application = global::System.Windows.Application.Current;
         if (application is null)
             return;
 
@@ -216,7 +216,7 @@ public sealed class ThemeService : IThemeService, IDisposable
 
     private void ApplyPageBackgroundOpacityCore()
     {
-        var application = Application.Current;
+        var application = global::System.Windows.Application.Current;
         if (application is null)
             return;
 
