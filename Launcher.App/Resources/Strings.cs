@@ -1301,4 +1301,11 @@ public static class Strings
     public static string Settings_FontFamilySegoeUI => Get(nameof(Settings_FontFamilySegoeUI));
     public static string Settings_FontFamilyConsolas => Get(nameof(Settings_FontFamilyConsolas));
     public static string Settings_FontFamilyCascadiaCode => Get(nameof(Settings_FontFamilyCascadiaCode));
+
+    public static string Settings_FontCustomModeLabel => Get(nameof(Settings_FontCustomModeLabel));
+    public static string Settings_FontPresetLabel => Get(nameof(Settings_FontPresetLabel));
+    public static string Settings_FontCustomInputLabel => Get(nameof(Settings_FontCustomInputLabel));
+    public static string Settings_FontCustomInputDescription => Get(nameof(Settings_FontCustomInputDescription));
+    public static string Settings_FontApplyButton => Get(nameof(Settings_FontApplyButton));
+    public static string Settings_FontPreviewLabel => Get(nameof(Settings_FontPreviewLabel));
 }
