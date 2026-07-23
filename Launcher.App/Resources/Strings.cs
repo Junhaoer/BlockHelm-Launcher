@@ -1284,4 +1284,21 @@ public static class Strings
     public static string Dialog_LaunchAnalysisOutOfMemoryTitle => Get(nameof(Dialog_LaunchAnalysisOutOfMemoryTitle));
     public static string Dialog_LaunchAnalysisOutOfMemoryDetail => Get(nameof(Dialog_LaunchAnalysisOutOfMemoryDetail));
     public static string Dialog_LaunchAnalysisOutOfMemoryRecommendation => Get(nameof(Dialog_LaunchAnalysisOutOfMemoryRecommendation));
+
+    public static string Settings_FontFamilySection => Get(nameof(Settings_FontFamilySection));
+    public static string Settings_FontFamilySelectionLabel => Get(nameof(Settings_FontFamilySelectionLabel));
+    public static string Settings_FontPreviewText => Get(nameof(Settings_FontPreviewText));
+    public static string Settings_FontFamilyMicrosoftYaHei => Get(nameof(Settings_FontFamilyMicrosoftYaHei));
+    public static string Settings_FontFamilySimHei => Get(nameof(Settings_FontFamilySimHei));
+    public static string Settings_FontFamilySimSun => Get(nameof(Settings_FontFamilySimSun));
+    public static string Settings_FontFamilyKaiTi => Get(nameof(Settings_FontFamilyKaiTi));
+    public static string Settings_FontFamilyFangSong => Get(nameof(Settings_FontFamilyFangSong));
+    public static string Settings_FontFamilyDengXian => Get(nameof(Settings_FontFamilyDengXian));
+    public static string Settings_FontFamilyMicrosoftJhengHei => Get(nameof(Settings_FontFamilyMicrosoftJhengHei));
+    public static string Settings_FontFamilyNotoSansCJKSC => Get(nameof(Settings_FontFamilyNotoSansCJKSC));
+    public static string Settings_FontFamilyNotoSans => Get(nameof(Settings_FontFamilyNotoSans));
+    public static string Settings_FontFamilyArial => Get(nameof(Settings_FontFamilyArial));
+    public static string Settings_FontFamilySegoeUI => Get(nameof(Settings_FontFamilySegoeUI));
+    public static string Settings_FontFamilyConsolas => Get(nameof(Settings_FontFamilyConsolas));
+    public static string Settings_FontFamilyCascadiaCode => Get(nameof(Settings_FontFamilyCascadiaCode));
 }
