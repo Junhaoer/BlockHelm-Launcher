@@ -34,4 +34,5 @@ public static class LauncherDefaults
     public const DownloadSourcePreference DefaultDownloadSourcePreference = DownloadSourcePreference.Official;
     public const int DefaultMemoryMb = 4096;
     public const LauncherUpdateChannel DefaultUpdateChannel = LauncherUpdateChannel.Release;
+    public const string DefaultLauncherFontFamily = "Microsoft YaHei UI";
 }
