@@ -3546,4 +3546,20 @@ The current game folder will be backed up first.</value>
   <data name="Settings_UserAgreementDescription" xml:space="preserve"><value>Read the terms and important notices that apply when using this software</value></data>
   <data name="Settings_ViewLegalDocumentButton" xml:space="preserve"><value>View</value></data>
   <data name="Status_OpenLegalDocumentFailed" xml:space="preserve"><value>Unable to open the legal document. Check your system browser settings and try again.</value></data>
+  <data name="Settings_FontFamilySection" xml:space="preserve"><value>Font Settings</value></data>
+  <data name="Settings_FontFamilySelectionLabel" xml:space="preserve"><value>Launcher Font</value></data>
+  <data name="Settings_FontPreviewText" xml:space="preserve"><value>AaBbCcDdEeFfGg 你好世界 1234567890</value></data>
+  <data name="Settings_FontFamilyMicrosoftYaHei" xml:space="preserve"><value>Microsoft YaHei</value></data>
+  <data name="Settings_FontFamilySimHei" xml:space="preserve"><value>SimHei</value></data>
+  <data name="Settings_FontFamilySimSun" xml:space="preserve"><value>SimSun</value></data>
+  <data name="Settings_FontFamilyKaiTi" xml:space="preserve"><value>KaiTi</value></data>
+  <data name="Settings_FontFamilyFangSong" xml:space="preserve"><value>FangSong</value></data>
+  <data name="Settings_FontFamilyDengXian" xml:space="preserve"><value>DengXian</value></data>
+  <data name="Settings_FontFamilyMicrosoftJhengHei" xml:space="preserve"><value>Microsoft JhengHei</value></data>
+  <data name="Settings_FontFamilyNotoSansCJKSC" xml:space="preserve"><value>Noto Sans CJK SC</value></data>
+  <data name="Settings_FontFamilyNotoSans" xml:space="preserve"><value>Noto Sans</value></data>
+  <data name="Settings_FontFamilyArial" xml:space="preserve"><value>Arial</value></data>
+  <data name="Settings_FontFamilySegoeUI" xml:space="preserve"><value>Segoe UI</value></data>
+  <data name="Settings_FontFamilyConsolas" xml:space="preserve"><value>Consolas</value></data>
+  <data name="Settings_FontFamilyCascadiaCode" xml:space="preserve"><value>Cascadia Code</value></data>
 </root>
