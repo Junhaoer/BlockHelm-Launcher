@@ -62,18 +62,37 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
             new(LauncherBackgroundEffects.Acrylic, Strings.Settings_BackgroundEffectAcrylicTitle),
             new(LauncherBackgroundEffects.Image, Strings.Settings_BackgroundEffectImageTitle)
         ];
+        FontFamilyOptions =
+        [
+            new(LauncherDefaults.DefaultLauncherFontFamily, Strings.Settings_FontFamilyMicrosoftYaHei),
+            new("SimHei", Strings.Settings_FontFamilySimHei),
+            new("SimSun", Strings.Settings_FontFamilySimSun),
+            new("KaiTi", Strings.Settings_FontFamilyKaiTi),
+            new("FangSong", Strings.Settings_FontFamilyFangSong),
+            new("DengXian", Strings.Settings_FontFamilyDengXian),
+            new("Microsoft JhengHei", Strings.Settings_FontFamilyMicrosoftJhengHei),
+            new("Noto Sans CJK SC", Strings.Settings_FontFamilyNotoSansCJKSC),
+            new("Noto Sans", Strings.Settings_FontFamilyNotoSans),
+            new("Arial", Strings.Settings_FontFamilyArial),
+            new("Segoe UI", Strings.Settings_FontFamilySegoeUI),
+            new("Consolas", Strings.Settings_FontFamilyConsolas),
+            new("Cascadia Code", Strings.Settings_FontFamilyCascadiaCode),
+        ];
         selectedThemeOption = ThemeOptions[0];
         selectedAccentColorOption = AccentColorOptions[0];
         selectedBackgroundEffectOption = BackgroundEffectOptions[1];
+        selectedFontFamilyOption = FontFamilyOptions[0];
     }
 
     public ObservableCollection<SettingsThemeOption> ThemeOptions { get; }
     public ObservableCollection<SettingsAccentColorOption> AccentColorOptions { get; }
     public ObservableCollection<SettingsBackgroundEffectOption> BackgroundEffectOptions { get; }
+    public ObservableCollection<SettingsFontFamilyOption> FontFamilyOptions { get; }
 
     [ObservableProperty] private SettingsThemeOption? selectedThemeOption;
     [ObservableProperty] private SettingsAccentColorOption? selectedAccentColorOption;
     [ObservableProperty] private SettingsBackgroundEffectOption? selectedBackgroundEffectOption;
+    [ObservableProperty] private SettingsFontFamilyOption? selectedFontFamilyOption;
     [ObservableProperty] private bool followSystemTheme = true;
     [ObservableProperty] private int launcherBackgroundOpacityPercent = LauncherDefaults.DefaultLauncherBackgroundOpacityPercent;
     [ObservableProperty] private bool enableImageBackgroundControlBlur = LauncherDefaults.DefaultEnableImageBackgroundControlBlur;
@@ -82,6 +101,7 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
     public bool IsBackgroundImageSelectionVisible => SelectedBackgroundEffectOption?.IsImageSelected ?? false;
     public bool IsBackgroundOpacityVisible => SelectedBackgroundEffectOption?.IsAcrylicEnabled ?? true;
     public string LauncherBackgroundOpacityText => $"{LauncherBackgroundOpacityPercent}%";
+    public string FontPreviewText => Strings.Settings_FontPreviewText;
 
     public void Load(LauncherSettings settings)
     {
@@ -97,6 +117,9 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
                 string.Equals(option.Id, backgroundEffect, StringComparison.Ordinal));
             LauncherBackgroundOpacityPercent = Math.Clamp(settings.LauncherBackgroundOpacityPercent, 0, 100);
             EnableImageBackgroundControlBlur = settings.EnableImageBackgroundControlBlur;
+            SelectedFontFamilyOption = FontFamilyOptions.FirstOrDefault(option =>
+                string.Equals(option.Id, settings.LauncherFontFamily, StringComparison.OrdinalIgnoreCase))
+                ?? FontFamilyOptions[0];
         });
     }
 
@@ -132,6 +155,23 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
         var accent = newValue.Id;
         themeService.ApplyAccent(accent);
         Persist(settings => settings.AccentColor = accent);
+    }
+
+    partial void OnSelectedFontFamilyOptionChanged(
+        SettingsFontFamilyOption? oldValue,
+        SettingsFontFamilyOption? newValue)
+    {
+        if (newValue is null)
+        {
+            LoadState(() => SelectedFontFamilyOption = oldValue ?? FontFamilyOptions[0]);
+            return;
+        }
+
+        if (!CanPersist)
+            return;
+        var font = newValue.Id;
+        themeService.ApplyFont(font);
+        Persist(settings => settings.LauncherFontFamily = font);
     }
 
     partial void OnLauncherBackgroundOpacityPercentChanged(int value)
