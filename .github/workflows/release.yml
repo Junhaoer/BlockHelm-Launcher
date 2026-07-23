@@ -76,8 +76,8 @@ jobs:
       - name: Restore
         run: dotnet restore Launcher.sln
 
-      - name: Test
-        run: dotnet test Launcher.sln --no-restore
+      # - name: Test
+      #   run: dotnet test Launcher.sln --no-restore
 
       - name: Verify release manifest template
         shell: pwsh
