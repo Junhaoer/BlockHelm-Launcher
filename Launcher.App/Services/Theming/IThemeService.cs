@@ -39,4 +39,6 @@ public interface IThemeService
     void ApplyBackgroundOpacity(int opacityPercent);
 
     void ApplyBackgroundEffect(string? backgroundEffect, bool enableImageControlBlur);
+
+    void ApplyFont(string? fontFamily);
 }
