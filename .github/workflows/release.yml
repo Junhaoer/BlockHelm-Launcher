@@ -157,7 +157,8 @@ jobs:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         run: |
           if ([string]::IsNullOrWhiteSpace($env:GITEE_TOKEN)) {
-            throw "Repository secret GITEE_TOKEN is not configured. Configure it before publishing a release."
+            Write-Host "GITEE_TOKEN is not configured. Skipping Gitee release."
+            return
           }
 
           $mirrorDirectory = Join-Path $env:RUNNER_TEMP "gitee-update-mirror"
