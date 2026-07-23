@@ -106,10 +106,27 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="{x:Static res:Strings.Settings_FontFamilySelectionLabel}"
+                                   Style="{StaticResource SettingsOptionTextStyle}" />
+                        <CheckBox Grid.Column="1"
+                                  Margin="16,0,0,0"
+                                  IsChecked="{Binding IsCustomFontMode, Mode=TwoWay}"
+                                  Content="{x:Static res:Strings.Settings_FontCustomModeLabel}"
+                                  Style="{StaticResource LauncherSwitchToggleButtonStyle}" />
+                    </Grid>
+
+                    <Grid Margin="0,18,0,0"
+                          IsEnabled="{Binding IsCustomFontMode, Converter={StaticResource InverseBoolConverter}}"
+                          Opacity="{Binding IsCustomFontMode, Converter={StaticResource InverseBoolOpacityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="220" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static res:Strings.Settings_FontPresetLabel}"
                                    Style="{StaticResource SettingsOptionTextStyle}" />
 
                         <controls:AnimatedComboBox Grid.Column="1"
@@ -120,15 +137,50 @@
                                                    Style="{StaticResource LauncherComboBoxStyle}" />
                     </Grid>
 
+                    <Grid Margin="0,18,0,0"
+                          IsEnabled="{Binding IsCustomFontMode}"
+                          Opacity="{Binding IsCustomFontMode, Converter={StaticResource BoolOpacityConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock Text="{x:Static res:Strings.Settings_FontCustomInputLabel}"
+                                       Style="{StaticResource SettingsOptionTextStyle}" />
+                            <TextBlock Margin="0,4,0,0"
+                                       Text="{x:Static res:Strings.Settings_FontCustomInputDescription}"
+                                       Style="{StaticResource SettingsDescriptionTextStyle}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <controls:AnimatedComboBox Width="180"
+                                                       ItemsSource="{Binding SystemFontFamilies}"
+                                                       Text="{Binding CustomFontFamilyInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                       IsEditable="True"
+                                                       Style="{StaticResource LauncherComboBoxStyle}" />
+                            <Button Margin="8,0,0,0"
+                                    Content="{x:Static res:Strings.Settings_FontApplyButton}"
+                                    Command="{Binding ApplyCustomFontCommand}"
+                                    Style="{StaticResource LauncherDialogButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+
                     <Border Margin="0,18,0,0"
                             Padding="16"
                             Background="{DynamicResource Brush.A0FFFFFF}"
                             CornerRadius="8">
-                        <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewText}"
-                                   FontFamily="{Binding SelectedFontFamilyOption.Id}"
-                                   FontSize="18"
-                                   Foreground="{DynamicResource Brush.F2F2F2}"
-                                   TextWrapping="Wrap" />
+                        <StackPanel>
+                            <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewLabel}"
+                                       Foreground="{DynamicResource LauncherTextSecondaryBrush}"
+                                       FontSize="12"
+                                       Margin="0,0,0,8" />
+                            <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewText}"
+                                       FontFamily="{Binding CustomFontFamilyInput, FallbackValue={x:Static res:Strings_Settings_FontFamilyMicrosoftYaHei}}"
+                                       FontSize="18"
+                                       Foreground="{DynamicResource Brush.F2F2F2}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
                     </Border>
                 </StackPanel>
             </Border>
