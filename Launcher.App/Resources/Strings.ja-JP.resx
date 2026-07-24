@@ -3568,4 +3568,5 @@
   <data name="Settings_FontCustomInputDescription" xml:space="preserve"><value>インストール済みシステムフォントを入力または選択</value></data>
   <data name="Settings_FontApplyButton" xml:space="preserve"><value>適用</value></data>
   <data name="Settings_FontPreviewLabel" xml:space="preserve"><value>フォントプレビュー</value></data>
+  <data name="Settings_FontPreviewCurrentLabel" xml:space="preserve"><value>現在のフォント：</value></data>
 </root>
