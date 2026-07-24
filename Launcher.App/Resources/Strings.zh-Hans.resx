@@ -1016,6 +1016,19 @@
   <data name="Settings_AccentColorPinkTitle" xml:space="preserve"><value>粉色 Pink</value></data>
   <data name="Settings_AccentColorOrangeTitle" xml:space="preserve"><value>橙色 Orange</value></data>
   <data name="Settings_AccentColorAmberTitle" xml:space="preserve"><value>黄色 Amber</value></data>
+  <data name="Settings_FontSection" xml:space="preserve"><value>启动器字体</value></data>
+  <data name="Settings_FontSelectionLabel" xml:space="preserve"><value>启动器字体</value></data>
+  <data name="Settings_FontMicrosoftYaHeiUITitle" xml:space="preserve"><value>微软雅黑 UI</value></data>
+  <data name="Settings_FontMicrosoftYaHeiTitle" xml:space="preserve"><value>微软雅黑</value></data>
+  <data name="Settings_FontSimHeiTitle" xml:space="preserve"><value>黑体</value></data>
+  <data name="Settings_FontSimSunTitle" xml:space="preserve"><value>宋体</value></data>
+  <data name="Settings_FontDengXianTitle" xml:space="preserve"><value>等线</value></data>
+  <data name="Settings_FontKaiTiTitle" xml:space="preserve"><value>楷体</value></data>
+  <data name="Settings_FontFangSongTitle" xml:space="preserve"><value>仿宋</value></data>
+  <data name="Settings_FontSegoeUITitle" xml:space="preserve"><value>Segoe UI</value></data>
+  <data name="Settings_FontArialTitle" xml:space="preserve"><value>Arial</value></data>
+  <data name="Settings_FontTimesNewRomanTitle" xml:space="preserve"><value>Times New Roman</value></data>
+  <data name="Settings_FontConsolasTitle" xml:space="preserve"><value>Consolas</value></data>
   <data name="GameSettings_ModManagementEmptyMessage" xml:space="preserve"><value>当前没有可用模组</value></data>
   <data name="GameSettings_ModManagementLoading" xml:space="preserve"><value>正在加载模组...</value></data>
   <data name="GameSettings_ModManagementSearchEmptyMessage" xml:space="preserve"><value>没有匹配的模组</value></data>
