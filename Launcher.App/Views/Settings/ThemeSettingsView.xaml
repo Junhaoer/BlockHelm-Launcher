@@ -156,7 +156,7 @@
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,8">
-                                <Run Text="{x:Static res:Strings_Settings_FontPreviewCurrentLabel}" />
+                                <Run Text="{x:Static res:Strings.FontPreviewCurrentLabel}" />
                                 <Run Text="{Binding SelectedFontFamilyOption.Title}" Foreground="{DynamicResource Brush.AccentOption.Blue}" />
                             </TextBlock>
                             <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewLabel}"
