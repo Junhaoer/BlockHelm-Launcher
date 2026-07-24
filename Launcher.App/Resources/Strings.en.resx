@@ -3568,4 +3568,5 @@ The current game folder will be backed up first.</value>
   <data name="Settings_FontCustomInputDescription" xml:space="preserve"><value>Enter or select an installed system font</value></data>
   <data name="Settings_FontApplyButton" xml:space="preserve"><value>Apply</value></data>
   <data name="Settings_FontPreviewLabel" xml:space="preserve"><value>Font Preview</value></data>
+  <data name="Settings_FontPreviewCurrentLabel" xml:space="preserve"><value>Current Font: </value></data>
 </root>
