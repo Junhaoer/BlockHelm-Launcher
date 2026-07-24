@@ -157,7 +157,7 @@
                                        FontSize="12"
                                        Margin="0,0,0,8" />
                             <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewText}"
-                                       FontFamily="{Binding CustomFontFamilyInput, FallbackValue=Microsoft YaHei UI}"
+                                       FontFamily="{Binding PreviewFontFamily, FallbackValue=SimHei}"
                                        FontSize="18"
                                        Foreground="{DynamicResource Brush.F2F2F2}"
                                        TextWrapping="Wrap" />
