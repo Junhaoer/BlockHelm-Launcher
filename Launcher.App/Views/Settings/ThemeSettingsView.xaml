@@ -99,7 +99,7 @@
         </GroupBox>
 
         <GroupBox Margin="0,18,0,0"
-                  Header="{x:Static res:Strings.Settings_FontFamilySection}"
+                  Header="{Binding SelectedFontFamilyOption.Title, StringFormat='{}{0}'}"
                   Style="{StaticResource LauncherContentSectionStyle}">
             <Border Style="{StaticResource SectionFieldSurfaceStyle}">
                 <StackPanel>
