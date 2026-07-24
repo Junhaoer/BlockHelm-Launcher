@@ -177,12 +177,24 @@ public sealed class ThemeService : IThemeService, IDisposable
 
         try
         {
-            application.Resources[FontFamilyResourceKey] = new FontFamily(preferredFontFamily);
+            var font = new FontFamily(preferredFontFamily);
+            application.Resources[FontFamilyResourceKey] = font;
+            application.FontFamily = font;
+            foreach (global::System.Windows.Window window in application.Windows)
+            {
+                window.FontFamily = font;
+            }
         }
         catch (Exception ex)
         {
             logger.LogWarning(ex, "Failed to apply font family {FontFamily}, falling back to default.", preferredFontFamily);
-            application.Resources[FontFamilyResourceKey] = new FontFamily(LauncherDefaults.DefaultLauncherFontFamily);
+            var fallback = new FontFamily(LauncherDefaults.DefaultLauncherFontFamily);
+            application.Resources[FontFamilyResourceKey] = fallback;
+            application.FontFamily = fallback;
+            foreach (global::System.Windows.Window window in application.Windows)
+            {
+                window.FontFamily = fallback;
+            }
         }
     }
 
