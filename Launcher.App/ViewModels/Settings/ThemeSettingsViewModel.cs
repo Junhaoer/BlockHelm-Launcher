@@ -65,24 +65,19 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
         ];
         FontFamilyOptions =
         [
-            new(LauncherDefaults.DefaultLauncherFontFamily, Strings.Settings_FontFamilyMicrosoftYaHei),
             new("SimHei", Strings.Settings_FontFamilySimHei),
             new("SimSun", Strings.Settings_FontFamilySimSun),
             new("KaiTi", Strings.Settings_FontFamilyKaiTi),
             new("FangSong", Strings.Settings_FontFamilyFangSong),
-            new("DengXian", Strings.Settings_FontFamilyDengXian),
-            new("Microsoft JhengHei", Strings.Settings_FontFamilyMicrosoftJhengHei),
             new("Noto Sans CJK SC", Strings.Settings_FontFamilyNotoSansCJKSC),
             new("Noto Sans", Strings.Settings_FontFamilyNotoSans),
-            new("Arial", Strings.Settings_FontFamilyArial),
-            new("Segoe UI", Strings.Settings_FontFamilySegoeUI),
-            new("Consolas", Strings.Settings_FontFamilyConsolas),
             new("Cascadia Code", Strings.Settings_FontFamilyCascadiaCode),
         ];
         selectedThemeOption = ThemeOptions[0];
         selectedAccentColorOption = AccentColorOptions[0];
         selectedBackgroundEffectOption = BackgroundEffectOptions[1];
         selectedFontFamilyOption = FontFamilyOptions[0];
+        customFontFamilyInput = FontFamilyOptions[0].Id;
     }
 
     public ObservableCollection<SettingsThemeOption> ThemeOptions { get; }
