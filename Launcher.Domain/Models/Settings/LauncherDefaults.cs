@@ -24,6 +24,7 @@ public static class LauncherDefaults
     public const string DefaultOfflineUsername = "Player";
     public const string DefaultTheme = "Dark";
     public const string DefaultAccentColor = LauncherAccentColors.Blue;
+    public const string DefaultFontFamily = LauncherFontFamilies.MicrosoftYaHeiUI;
     public const string DefaultLauncherLanguage = LauncherLanguages.SimplifiedChinese;
     public const string DefaultLauncherBackgroundEffect = LauncherBackgroundEffects.Acrylic;
     public const int DefaultLauncherBackgroundOpacityPercent = 85;

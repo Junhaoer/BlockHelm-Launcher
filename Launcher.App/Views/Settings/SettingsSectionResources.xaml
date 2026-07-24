@@ -129,6 +129,15 @@
         </StackPanel>
     </DataTemplate>
 
+    <DataTemplate x:Key="FontOptionTemplate"
+                  DataType="{x:Type settings:SettingsFontOption}">
+        <TextBlock Text="{Binding Title}"
+                   FontFamily="{Binding Id}"
+                   Foreground="{DynamicResource Brush.F4F4F4}"
+                   FontSize="13"
+                   VerticalAlignment="Center" />
+    </DataTemplate>
+
     <Style x:Key="JavaRuntimeListBoxStyle" TargetType="ListBox">
         <Setter Property="Margin" Value="0,10,0,0" />
         <Setter Property="Background" Value="Transparent" />

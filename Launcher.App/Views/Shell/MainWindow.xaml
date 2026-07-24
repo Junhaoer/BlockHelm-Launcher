@@ -50,7 +50,7 @@
         PreviewDragOver="Window_OnPreviewDragOver"
         PreviewDragLeave="Window_OnPreviewDragLeave"
         PreviewDrop="Window_OnPreviewDrop"
-        FontFamily="Microsoft YaHei UI"
+        FontFamily="{DynamicResource LauncherFontFamily}"
         ResizeMode="CanResize"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"

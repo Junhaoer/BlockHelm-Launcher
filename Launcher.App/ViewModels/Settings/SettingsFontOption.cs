@@ -17,28 +17,17 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-namespace Launcher.App.Services;
+namespace Launcher.App.ViewModels.Settings;
 
-public interface IThemeService
+public sealed class SettingsFontOption
 {
-    EffectiveTheme EffectiveTheme { get; }
+    public SettingsFontOption(string id, string title)
+    {
+        Id = id;
+        Title = title;
+    }
 
-    string BackgroundEffect { get; }
+    public string Id { get; }
 
-    event EventHandler<EffectiveThemeChangedEventArgs>? EffectiveThemeChanged;
-
-    event EventHandler<BackgroundEffectChangedEventArgs>? BackgroundEffectChanged;
-
-    void ApplyPreference(
-        string? theme,
-        bool followSystem,
-        int backgroundOpacityPercent);
-
-    void ApplyAccent(string? accentColor);
-
-    void ApplyFont(string? fontFamily);
-
-    void ApplyBackgroundOpacity(int opacityPercent);
-
-    void ApplyBackgroundEffect(string? backgroundEffect, bool enableImageControlBlur);
+    public string Title { get; }
 }

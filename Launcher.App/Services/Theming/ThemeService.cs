@@ -28,6 +28,7 @@ public sealed class ThemeService : IThemeService, IDisposable
     private readonly ProgressiveBlurController progressiveBlurController;
     private string preferredTheme = LauncherDefaults.DefaultTheme;
     private string preferredAccentColor = LauncherDefaults.DefaultAccentColor;
+    private string preferredFontFamily = LauncherDefaults.DefaultFontFamily;
     private string backgroundEffect = LauncherDefaults.DefaultLauncherBackgroundEffect;
     private bool followSystem = true;
     private int backgroundOpacityPercent = LauncherDefaults.DefaultLauncherBackgroundOpacityPercent;
@@ -113,6 +114,22 @@ public sealed class ThemeService : IThemeService, IDisposable
         uiDispatcher.Invoke(ApplyAppearanceResourcesCore);
     }
 
+    public void ApplyFont(string? fontFamily)
+    {
+        var normalizedFontFamily = LauncherFontFamilies.Normalize(fontFamily);
+        if (!string.IsNullOrWhiteSpace(fontFamily)
+            && !string.Equals(fontFamily, normalizedFontFamily, StringComparison.OrdinalIgnoreCase))
+        {
+            logger.LogWarning(
+                "Invalid launcher font family preference encountered. FontFamily={FontFamily} FallingBackTo={FallbackFontFamily}",
+                fontFamily,
+                normalizedFontFamily);
+        }
+
+        preferredFontFamily = normalizedFontFamily;
+        uiDispatcher.Invoke(ApplyFontCore);
+    }
+
     public void ApplyBackgroundOpacity(int opacityPercent)
     {
         backgroundOpacityPercent = NormalizeBackgroundOpacity(opacityPercent);
@@ -186,6 +203,16 @@ public sealed class ThemeService : IThemeService, IDisposable
         ThemeResourceLayerManager.ApplyPageBackgroundOpacity(
             application.Resources,
             presentation.PageBackgroundOpacityPercent);
+    }
+
+    private void ApplyFontCore()
+    {
+        var application = global::System.Windows.Application.Current;
+        if (application is null)
+            return;
+
+        application.Resources["LauncherFontFamily"] = new global::System.Windows.Media.FontFamily(preferredFontFamily);
+        logger.LogDebug("Launcher font family applied. FontFamily={FontFamily}", preferredFontFamily);
     }
 
     private EffectiveTheme ResolveEffectiveTheme(string theme, bool useSystemTheme)

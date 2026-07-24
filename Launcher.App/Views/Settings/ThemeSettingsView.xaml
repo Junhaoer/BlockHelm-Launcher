@@ -99,6 +99,29 @@
         </GroupBox>
 
         <GroupBox Margin="0,18,0,0"
+                  Header="{x:Static res:Strings.Settings_FontSection}"
+                  Style="{StaticResource LauncherContentSectionStyle}">
+            <Border Style="{StaticResource SectionFieldSurfaceStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="220" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static res:Strings.Settings_FontSelectionLabel}"
+                               Style="{StaticResource SettingsOptionTextStyle}" />
+
+                    <controls:AnimatedComboBox Grid.Column="1"
+                                               ItemsSource="{Binding FontOptions}"
+                                               SelectedItem="{Binding SelectedFontOption, Mode=TwoWay}"
+                                               ItemTemplate="{StaticResource FontOptionTemplate}"
+                                               SelectionItemTemplate="{StaticResource FontOptionTemplate}"
+                                               Style="{StaticResource LauncherComboBoxStyle}" />
+                </Grid>
+            </Border>
+        </GroupBox>
+
+        <GroupBox Margin="0,18,0,0"
                   Header="{x:Static res:Strings.Settings_BackgroundSection}"
                   Style="{StaticResource LauncherContentSectionStyle}">
             <Border Style="{StaticResource SectionFieldSurfaceStyle}">

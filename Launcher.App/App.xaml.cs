@@ -181,6 +181,7 @@ public partial class App : System.Windows.Application
                 mainViewModel.Settings.ThemeFollowSystem,
                 mainViewModel.Settings.LauncherBackgroundOpacityPercent);
             themeService.ApplyAccent(mainViewModel.Settings.AccentColor);
+            themeService.ApplyFont(mainViewModel.Settings.FontFamily);
             themeService.ApplyBackgroundEffect(
                 mainViewModel.Settings.LauncherBackgroundEffect,
                 mainViewModel.Settings.EnableImageBackgroundControlBlur);
