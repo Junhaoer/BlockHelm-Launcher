@@ -116,17 +116,13 @@ public sealed class ThemeService : IThemeService, IDisposable
 
     public void ApplyFont(string? fontFamily)
     {
-        var normalizedFontFamily = LauncherFontFamilies.Normalize(fontFamily);
-        if (!string.IsNullOrWhiteSpace(fontFamily)
-            && !string.Equals(fontFamily, normalizedFontFamily, StringComparison.OrdinalIgnoreCase))
-        {
-            logger.LogWarning(
-                "Invalid launcher font family preference encountered. FontFamily={FontFamily} FallingBackTo={FallbackFontFamily}",
-                fontFamily,
-                normalizedFontFamily);
-        }
+        if (string.IsNullOrWhiteSpace(fontFamily))
+            fontFamily = LauncherDefaults.DefaultFontFamily;
 
-        preferredFontFamily = normalizedFontFamily;
+        if (string.Equals(fontFamily, LauncherFontFamilies.Custom, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        preferredFontFamily = fontFamily;
         uiDispatcher.Invoke(ApplyFontCore);
     }
 

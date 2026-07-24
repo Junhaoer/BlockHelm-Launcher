@@ -102,22 +102,62 @@
                   Header="{x:Static res:Strings.Settings_FontSection}"
                   Style="{StaticResource LauncherContentSectionStyle}">
             <Border Style="{StaticResource SectionFieldSurfaceStyle}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="220" />
-                    </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="220" />
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="{x:Static res:Strings.Settings_FontSelectionLabel}"
-                               Style="{StaticResource SettingsOptionTextStyle}" />
+                        <TextBlock Text="{x:Static res:Strings.Settings_FontSelectionLabel}"
+                                   Style="{StaticResource SettingsOptionTextStyle}" />
 
-                    <controls:AnimatedComboBox Grid.Column="1"
-                                               ItemsSource="{Binding FontOptions}"
-                                               SelectedItem="{Binding SelectedFontOption, Mode=TwoWay}"
-                                               ItemTemplate="{StaticResource FontOptionTemplate}"
-                                               SelectionItemTemplate="{StaticResource FontOptionTemplate}"
-                                               Style="{StaticResource LauncherComboBoxStyle}" />
-                </Grid>
+                        <controls:AnimatedComboBox Grid.Column="1"
+                                                   ItemsSource="{Binding FontOptions}"
+                                                   SelectedItem="{Binding SelectedFontOption, Mode=TwoWay}"
+                                                   ItemTemplate="{StaticResource FontOptionTemplate}"
+                                                   SelectionItemTemplate="{StaticResource FontOptionTemplate}"
+                                                   Style="{StaticResource LauncherComboBoxStyle}" />
+                    </Grid>
+
+                    <Grid Margin="0,18,0,0"
+                          animation:AnimatedCollapse.IsExpanded="{Binding IsCustomFontVisible}"
+                          animation:AnimatedCollapse.Duration="0:0:0.18">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="220" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{x:Static res:Strings.Settings_FontCustomSelectLabel}"
+                                   Style="{StaticResource SettingsOptionTextStyle}" />
+
+                        <controls:AnimatedComboBox Grid.Column="1"
+                                                   ItemsSource="{Binding SystemFontFamilies}"
+                                                   SelectedItem="{Binding SelectedSystemFont, Mode=TwoWay}"
+                                                   Style="{StaticResource LauncherComboBoxStyle}" />
+                    </Grid>
+
+                    <Grid Margin="0,18,0,0"
+                          animation:AnimatedCollapse.IsExpanded="{Binding IsCustomFontVisible}"
+                          animation:AnimatedCollapse.Duration="0:0:0.18">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="220" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{x:Static res:Strings.Settings_FontCustomInputLabel}"
+                                       Style="{StaticResource SettingsOptionTextStyle}" />
+                            <TextBlock Margin="0,4,16,0"
+                                       Text="{x:Static res:Strings.Settings_FontCustomInputDescription}"
+                                       Style="{StaticResource SettingsDescriptionTextStyle}" />
+                        </StackPanel>
+
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding CustomFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource LauncherTextBoxStyle}" />
+                    </Grid>
+                </StackPanel>
             </Border>
         </GroupBox>
 

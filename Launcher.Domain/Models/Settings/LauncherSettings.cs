@@ -32,6 +32,7 @@ public sealed class LauncherSettings
     public string Theme { get; set; } = LauncherDefaults.DefaultTheme;
     public string AccentColor { get; set; } = LauncherDefaults.DefaultAccentColor;
     public string FontFamily { get; set; } = LauncherDefaults.DefaultFontFamily;
+    public string CustomFontFamily { get; set; } = string.Empty;
     public string LauncherLanguage { get; set; } = LauncherDefaults.DefaultLauncherLanguage;
     public bool EnableDiagnosticLogging { get; set; }
     public bool HasAcceptedUserAgreement { get; set; }

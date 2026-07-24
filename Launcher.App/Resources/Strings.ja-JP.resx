@@ -2982,32 +2982,23 @@
   <data name="Settings_FontMicrosoftYaHeiTitle" xml:space="preserve">
     <value>Microsoft YaHei</value>
   </data>
-  <data name="Settings_FontSimHeiTitle" xml:space="preserve">
-    <value>SimHei</value>
-  </data>
-  <data name="Settings_FontSimSunTitle" xml:space="preserve">
-    <value>SimSun</value>
-  </data>
   <data name="Settings_FontDengXianTitle" xml:space="preserve">
     <value>DengXian</value>
   </data>
-  <data name="Settings_FontKaiTiTitle" xml:space="preserve">
-    <value>KaiTi</value>
-  </data>
-  <data name="Settings_FontFangSongTitle" xml:space="preserve">
-    <value>FangSong</value>
-  </data>
-  <data name="Settings_FontSegoeUITitle" xml:space="preserve">
-    <value>Segoe UI</value>
-  </data>
-  <data name="Settings_FontArialTitle" xml:space="preserve">
-    <value>Arial</value>
-  </data>
-  <data name="Settings_FontTimesNewRomanTitle" xml:space="preserve">
-    <value>Times New Roman</value>
-  </data>
   <data name="Settings_FontConsolasTitle" xml:space="preserve">
     <value>Consolas</value>
+  </data>
+  <data name="Settings_FontCustomTitle" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="Settings_FontCustomSelectLabel" xml:space="preserve">
+    <value>システムフォントを選択</value>
+  </data>
+  <data name="Settings_FontCustomInputLabel" xml:space="preserve">
+    <value>フォント名を入力</value>
+  </data>
+  <data name="Settings_FontCustomInputDescription" xml:space="preserve">
+    <value>システムにインストールされているフォント名を入力してください</value>
   </data>
   <data name="GameSettings_ModManagementEmptyMessage" xml:space="preserve">
     <value>利用可能な mod はありません</value>

@@ -23,33 +23,23 @@ public static class LauncherFontFamilies
 {
     public const string MicrosoftYaHeiUI = "Microsoft YaHei UI";
     public const string MicrosoftYaHei = "Microsoft YaHei";
-    public const string SimHei = "SimHei";
-    public const string SimSun = "SimSun";
     public const string DengXian = "DengXian";
-    public const string KaiTi = "KaiTi";
-    public const string FangSong = "FangSong";
-    public const string SegoeUI = "Segoe UI";
-    public const string Arial = "Arial";
-    public const string TimesNewRoman = "Times New Roman";
     public const string Consolas = "Consolas";
+    public const string Custom = "Custom";
 
     public static IReadOnlyList<string> All { get; } =
     [
         MicrosoftYaHeiUI,
         MicrosoftYaHei,
-        SimHei,
-        SimSun,
         DengXian,
-        KaiTi,
-        FangSong,
-        SegoeUI,
-        Arial,
-        TimesNewRoman,
         Consolas
     ];
 
     public static string Normalize(string? fontFamily)
     {
+        if (string.Equals(fontFamily, Custom, StringComparison.OrdinalIgnoreCase))
+            return Custom;
+
         foreach (var knownFontFamily in All)
         {
             if (string.Equals(knownFontFamily, fontFamily, StringComparison.OrdinalIgnoreCase))
