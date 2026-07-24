@@ -30,17 +30,14 @@ jobs:
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
           BHL_API_KEY: ${{ secrets.BHL_API_KEY }}
         run: |
-          if ([string]::IsNullOrWhiteSpace($env:CURSEFORGE_API_KEY)) {
-            throw "Repository secret CURSEFORGE_API_KEY is not configured."
+          if (-not [string]::IsNullOrWhiteSpace($env:CURSEFORGE_API_KEY) -and -not [string]::IsNullOrWhiteSpace($env:BHL_API_KEY)) {
+            New-Item -ItemType Directory -Force ".local-secrets" | Out-Null
+            Set-Content -Path ".local-secrets/curseforge.key" -Value $env:CURSEFORGE_API_KEY.Trim() -NoNewline -Encoding utf8
+            Set-Content -Path ".local-secrets/mcres-bhl.key" -Value $env:BHL_API_KEY.Trim() -NoNewline -Encoding utf8
+            Write-Host "API keys embedded successfully."
+          } else {
+            Write-Host "Warning: API keys not configured. Building without embedded keys."
           }
-
-          if ([string]::IsNullOrWhiteSpace($env:BHL_API_KEY)) {
-            throw "Repository secret BHL_API_KEY is not configured."
-          }
-
-          New-Item -ItemType Directory -Force ".local-secrets" | Out-Null
-          Set-Content -Path ".local-secrets/curseforge.key" -Value $env:CURSEFORGE_API_KEY.Trim() -NoNewline -Encoding utf8
-          Set-Content -Path ".local-secrets/mcres-bhl.key" -Value $env:BHL_API_KEY.Trim() -NoNewline -Encoding utf8
 
       - name: Restore
         run: dotnet restore Launcher.sln
