@@ -99,7 +99,7 @@
         </GroupBox>
 
         <GroupBox Margin="0,18,0,0"
-                  Header="{Binding SelectedFontFamilyOption.Title, StringFormat='{}{0}'}"
+                  Header="{x:Static res:Strings.Settings_FontFamilySection}"
                   Style="{StaticResource LauncherContentSectionStyle}">
             <Border Style="{StaticResource SectionFieldSurfaceStyle}">
                 <StackPanel>
@@ -152,13 +152,6 @@
                             Background="{DynamicResource Brush.A0FFFFFF}"
                             CornerRadius="8">
                         <StackPanel>
-                            <TextBlock Foreground="{DynamicResource Brush.F2F2F2}"
-                                       FontSize="14"
-                                       FontWeight="SemiBold"
-                                       Margin="0,0,0,8">
-                                <Run Text="{x:Static res:Strings.Settings_FontPreviewCurrentLabel}" />
-                                <Run Text="{Binding SelectedFontFamilyOption.Title}" Foreground="{DynamicResource Brush.AccentOption.Blue}" />
-                            </TextBlock>
                             <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewLabel}"
                                        Foreground="{DynamicResource LauncherTextSecondaryBrush}"
                                        FontSize="12"
