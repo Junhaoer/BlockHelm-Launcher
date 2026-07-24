@@ -1308,4 +1308,5 @@ public static class Strings
     public static string Settings_FontCustomInputDescription => Get(nameof(Settings_FontCustomInputDescription));
     public static string Settings_FontApplyButton => Get(nameof(Settings_FontApplyButton));
     public static string Settings_FontPreviewLabel => Get(nameof(Settings_FontPreviewLabel));
+    public static string Settings_FontPreviewCurrentLabel => Get(nameof(Settings_FontPreviewCurrentLabel));
 }
