@@ -102,6 +102,7 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
     public bool IsBackgroundOpacityVisible => SelectedBackgroundEffectOption?.IsAcrylicEnabled ?? true;
     public string LauncherBackgroundOpacityText => $"{LauncherBackgroundOpacityPercent}%";
     public string FontPreviewText => Strings.Settings_FontPreviewText;
+    public string PreviewFontFamily => CustomFontFamilyInput;
 
     public void Load(LauncherSettings settings)
     {
@@ -171,6 +172,8 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
             return;
         var font = newValue.Id;
         themeService.ApplyFont(font);
+        CustomFontFamilyInput = font;
+        OnPropertyChanged(nameof(PreviewFontFamily));
         Persist(settings => settings.LauncherFontFamily = font);
     }
 
@@ -250,6 +253,7 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
 
     partial void OnCustomFontFamilyInputChanged(string value)
     {
+        OnPropertyChanged(nameof(PreviewFontFamily));
         if (IsCustomFontMode && !string.IsNullOrWhiteSpace(value))
         {
             if (!CanPersist)
