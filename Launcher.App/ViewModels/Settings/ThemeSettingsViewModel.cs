@@ -121,6 +121,7 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
             SelectedFontFamilyOption = FontFamilyOptions.FirstOrDefault(option =>
                 string.Equals(option.Id, settings.LauncherFontFamily, StringComparison.OrdinalIgnoreCase))
                 ?? FontFamilyOptions[0];
+            CustomFontFamilyInput = settings.LauncherFontFamily;
         });
     }
 
@@ -171,9 +172,9 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
         if (!CanPersist)
             return;
         var font = newValue.Id;
-        themeService.ApplyFont(font);
         CustomFontFamilyInput = font;
         OnPropertyChanged(nameof(PreviewFontFamily));
+        themeService.ApplyFont(font);
         Persist(settings => settings.LauncherFontFamily = font);
     }
 
