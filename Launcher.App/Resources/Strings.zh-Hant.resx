@@ -3568,4 +3568,5 @@
   <data name="Settings_FontCustomInputDescription" xml:space="preserve"><value>輸入或選擇系統已安裝的字體</value></data>
   <data name="Settings_FontApplyButton" xml:space="preserve"><value>套用</value></data>
   <data name="Settings_FontPreviewLabel" xml:space="preserve"><value>字體預覽</value></data>
+  <data name="Settings_FontPreviewCurrentLabel" xml:space="preserve"><value>目前字體：</value></data>
 </root>
