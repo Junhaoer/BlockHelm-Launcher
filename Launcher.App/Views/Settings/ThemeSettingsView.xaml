@@ -135,11 +135,11 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <controls:AnimatedComboBox Width="180"
-                                                       ItemsSource="{Binding SystemFontFamilies}"
-                                                       Text="{Binding CustomFontFamilyInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                       IsEditable="True"
-                                                       Style="{StaticResource LauncherComboBoxStyle}" />
+                            <ComboBox Width="180"
+                                      ItemsSource="{Binding SystemFontFamilies}"
+                                      SelectedItem="{Binding CustomFontFamilyInput, Mode=TwoWay}"
+                                      IsEditable="True"
+                                      Style="{StaticResource LauncherComboBoxStyle}" />
                             <Button Margin="8,0,0,0"
                                     Content="{x:Static res:Strings.Settings_FontApplyButton}"
                                     Command="{Binding ApplyCustomFontCommand}"
