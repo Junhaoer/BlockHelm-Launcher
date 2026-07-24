@@ -152,6 +152,13 @@
                             Background="{DynamicResource Brush.A0FFFFFF}"
                             CornerRadius="8">
                         <StackPanel>
+                            <TextBlock Foreground="{DynamicResource Brush.F2F2F2}"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,8">
+                                <Run Text="{x:Static res:Strings_Settings_FontPreviewCurrentLabel}" />
+                                <Run Text="{Binding SelectedFontFamilyOption.Title}" Foreground="{DynamicResource Brush.AccentOption.Blue}" />
+                            </TextBlock>
                             <TextBlock Text="{x:Static res:Strings.Settings_FontPreviewLabel}"
                                        Foreground="{DynamicResource LauncherTextSecondaryBrush}"
                                        FontSize="12"
