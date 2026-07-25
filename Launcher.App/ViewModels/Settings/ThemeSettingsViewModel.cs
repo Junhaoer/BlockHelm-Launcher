@@ -65,8 +65,7 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
             new(LauncherFontFamilies.Consolas, Strings.Settings_FontConsolasTitle),
             new(LauncherFontFamilies.Custom, Strings.Settings_FontCustomTitle)
         ];
-        SystemFontFamilies = new ObservableCollection<string>(
-            Fonts.SystemFontFamilies.Select(f => f.Source).OrderBy(f => f));
+        SystemFontFamilies = new ObservableCollection<string>();
         BackgroundEffectOptions =
         [
             new(LauncherBackgroundEffects.None, Strings.Settings_BackgroundEffectNoneTitle),
@@ -105,6 +104,12 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
     {
         LoadState(() =>
         {
+            if (SystemFontFamilies.Count == 0)
+            {
+                foreach (var font in Fonts.SystemFontFamilies.Select(f => f.Source).OrderBy(f => f))
+                    SystemFontFamilies.Add(font);
+            }
+
             FollowSystemTheme = settings.ThemeFollowSystem;
             SelectedThemeOption = ThemeOptions.FirstOrDefault(option =>
                 string.Equals(option.Id, settings.Theme, StringComparison.OrdinalIgnoreCase)) ?? ThemeOptions[0];
