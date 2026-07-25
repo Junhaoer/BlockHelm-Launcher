@@ -155,7 +155,7 @@
 
                         <TextBox Grid.Column="1"
                                  Text="{Binding CustomFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource LauncherTextBoxStyle}" />
+                                 Style="{StaticResource LauncherDialogTextBoxStyle}" />
                     </Grid>
                 </StackPanel>
             </Border>
