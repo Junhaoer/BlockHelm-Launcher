@@ -134,8 +134,17 @@
                         <ComboBox Grid.Column="1"
                                   IsEditable="True"
                                   ItemsSource="{Binding SystemFontFamilies}"
-                                  Text="{Binding CustomFontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Style="{StaticResource LauncherComboBoxStyle}" />
+                                  Text="{Binding CustomFontFamily, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                  FontFamily="{DynamicResource LauncherFontFamily}"
+                                  FontSize="13"
+                                  Foreground="{DynamicResource Brush.F4F4F4}"
+                                  Background="{DynamicResource Brush.Card.Surface}"
+                                  BorderBrush="{DynamicResource Brush.Input.ComboBox.Border}"
+                                  BorderThickness="1"
+                                  MinWidth="160"
+                                  Height="36"
+                                  VerticalContentAlignment="Center"
+                                  Padding="12,0,0,0" />
                     </Grid>
                 </StackPanel>
             </Border>
