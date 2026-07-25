@@ -92,7 +92,6 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
     [ObservableProperty] private int launcherBackgroundOpacityPercent = LauncherDefaults.DefaultLauncherBackgroundOpacityPercent;
     [ObservableProperty] private bool enableImageBackgroundControlBlur = LauncherDefaults.DefaultEnableImageBackgroundControlBlur;
     [ObservableProperty] private string customFontFamily = string.Empty;
-    [ObservableProperty] private string? selectedSystemFont;
 
     public bool IsThemeSelectionVisible => !FollowSystemTheme;
     public bool IsBackgroundImageSelectionVisible => SelectedBackgroundEffectOption?.IsImageSelected ?? false;
@@ -119,8 +118,6 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
             SelectedFontOption = FontOptions.FirstOrDefault(option =>
                 string.Equals(option.Id, fontFamily, StringComparison.Ordinal)) ?? FontOptions[0];
             CustomFontFamily = settings.CustomFontFamily;
-            SelectedSystemFont = SystemFontFamilies.FirstOrDefault(f =>
-                string.Equals(f, settings.CustomFontFamily, StringComparison.OrdinalIgnoreCase));
             var backgroundEffect = LauncherBackgroundEffects.Normalize(settings.LauncherBackgroundEffect);
             SelectedBackgroundEffectOption = BackgroundEffectOptions.First(option =>
                 string.Equals(option.Id, backgroundEffect, StringComparison.Ordinal));
@@ -198,19 +195,6 @@ public sealed partial class ThemeSettingsViewModel : SettingsSectionViewModelBas
                 settings.CustomFontFamily = string.Empty;
             });
         }
-    }
-
-    partial void OnSelectedSystemFontChanged(string? oldValue, string? newValue)
-    {
-        if (newValue is null || !IsCustomFontVisible)
-            return;
-
-        CustomFontFamily = newValue;
-        if (!CanPersist)
-            return;
-
-        themeService.ApplyFont(newValue);
-        Persist(settings => settings.CustomFontFamily = newValue);
     }
 
     partial void OnCustomFontFamilyChanged(string value)
