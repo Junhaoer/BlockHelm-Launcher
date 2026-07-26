@@ -212,6 +212,155 @@
         </Grid>
     </DataTemplate>
 
+    <Style x:Key="LauncherEditableComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Height" Value="36" />
+        <Setter Property="MinWidth" Value="160" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.F4F4F4}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Card.Surface}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Input.ComboBox.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="MaxDropDownHeight" Value="260" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+        <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource LauncherComboBoxDropDownItemStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton x:Name="ToggleButton"
+                                      ClickMode="Press"
+                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      Focusable="False"
+                                      IsTabStop="False">
+                            <Border x:Name="Border"
+                                    Background="{DynamicResource Brush.Card.Surface}"
+                                    BorderBrush="{DynamicResource Brush.Input.ComboBox.Border}"
+                                    BorderThickness="1"
+                                    CornerRadius="8">
+                                <Grid>
+                                    <Border x:Name="HoverBackground"
+                                            Background="{DynamicResource Brush.Button.Secondary.Hover}"
+                                            CornerRadius="8"
+                                            Opacity="0" />
+                                    <Grid Margin="12,0,34,0">
+                                        <TextBlock x:Name="PlaceholderText"
+                                                   Text="输入或选择字体..."
+                                                   Foreground="{DynamicResource Brush.AFFFFFFF}"
+                                                   FontSize="13"
+                                                   VerticalAlignment="Center"
+                                                   IsHitTestVisible="False"
+                                                   Visibility="Collapsed" />
+                                        <TextBox x:Name="PART_EditableTextBox"
+                                                 Background="Transparent"
+                                                 BorderThickness="0"
+                                                 Foreground="{DynamicResource Brush.F4F4F4}"
+                                                 FontSize="13"
+                                                 FontFamily="{DynamicResource LauncherFontFamily}"
+                                                 VerticalContentAlignment="Center"
+                                                 CaretBrush="{DynamicResource Brush.F4F4F4}" />
+                                    </Grid>
+                                    <TextBlock Margin="0,0,12,0"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               FontFamily="{DynamicResource LauncherIconFontFamily}"
+                                               FontSize="11"
+                                               Foreground="{DynamicResource Brush.CFFFFFFF}"
+                                               Text="&#xE70D;" />
+                                </Grid>
+                            </Border>
+                        </ToggleButton>
+                        <Popup x:Name="Popup"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               PlacementTarget="{Binding ElementName=ToggleButton}"
+                               Placement="Bottom"
+                               HorizontalOffset="-1"
+                               VerticalOffset="-8"
+                               PopupAnimation="None">
+                            <Grid x:Name="PopupSurface"
+                                  Margin="14"
+                                  MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border Background="Transparent"
+                                        CornerRadius="9"
+                                        IsHitTestVisible="False">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="22"
+                                                          Color="{DynamicResource Color.000000}"
+                                                          Opacity="0.36"
+                                                          ShadowDepth="0" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border Background="{DynamicResource Brush.Surface.Flyout}"
+                                        BorderBrush="{DynamicResource Brush.14FFFFFF}"
+                                        BorderThickness="1"
+                                        CornerRadius="9"
+                                        ClipToBounds="True" />
+                                <ListBox x:Name="DropDownList"
+                                         Margin="5"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         ItemContainerStyle="{StaticResource LauncherComboBoxDropDownItemStyle}"
+                                         ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Items}"
+                                         ScrollViewer.CanContentScroll="True"
+                                         VirtualizingPanel.IsVirtualizing="True"
+                                         VirtualizingPanel.VirtualizationMode="Recycling"
+                                         VirtualizingPanel.ScrollUnit="Pixel" />
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="HoverBackground"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.16">
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="HoverBackground"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.22">
+                                        <DoubleAnimation.EasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Brush.Input.ComboBox.BorderExpanded}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Brush.165A5A5A}" />
+                            <Setter Property="Opacity" Value="0.58" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEditable" Value="True" />
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <DataTemplate x:Key="InteractiveControlItemTemplate"
                   DataType="{x:Type settings:SettingsInteractiveControlItem}">
         <StackPanel>
