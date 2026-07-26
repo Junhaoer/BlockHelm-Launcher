@@ -135,7 +135,22 @@
                                   IsEditable="True"
                                   ItemsSource="{Binding SystemFontFamilies}"
                                   Text="{Binding CustomFontFamily, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                  Style="{StaticResource LauncherEditableComboBoxStyle}" />
+                                  FontFamily="{DynamicResource LauncherFontFamily}"
+                                  FontSize="13"
+                                  Foreground="{DynamicResource Brush.F4F4F4}"
+                                  Background="{DynamicResource Brush.Card.Surface}"
+                                  BorderBrush="{DynamicResource Brush.Input.ComboBox.Border}"
+                                  BorderThickness="1"
+                                  Height="36"
+                                  MinWidth="160"
+                                  VerticalContentAlignment="Center"
+                                  Padding="12,0,0,0">
+                            <ComboBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="8" />
+                                </Style>
+                            </ComboBox.Resources>
+                        </ComboBox>
                     </Grid>
                 </StackPanel>
             </Border>
